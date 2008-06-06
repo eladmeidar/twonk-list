@@ -1,0 +1,16 @@
+body {
+  background:#232323;
+  color:#fbac10;
+  font:12pt sans-serif;
+}
+.vote-number {
+  float:left;
+  font-size:13pt;
+}
+.vote-comment {
+  float:left;
+  padding:50px;
+  border:1px solid red;
+  margin:20px;
+}
+

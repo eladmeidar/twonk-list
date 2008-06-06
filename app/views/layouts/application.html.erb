@@ -1,5 +1,12 @@
+<html>
+  <head>
+    <%= stylesheet_link_tag "style" %>
+  </head>
+  <body>
 <% for message in flash %>
 
   <%= message.first %>: <%= message.last %>
 <% end %>
 <%= yield %>
+</body>
+</html>

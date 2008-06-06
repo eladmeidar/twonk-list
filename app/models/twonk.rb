@@ -5,4 +5,12 @@ class Twonk < ActiveRecord::Base
   def self.most_twonky
     find(:all, :order => "vote_count")
   end
+
+  def for_votes
+    votes.select { |vote| vote.positive? }
+  end
+
+  def against_votes
+    votes.select { |vote| !vote.positive? }
+  end
 end

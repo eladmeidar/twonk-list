@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.root :controller => "twonks"
   map.resources :twonks
   map.resources :users
   map.resource :session

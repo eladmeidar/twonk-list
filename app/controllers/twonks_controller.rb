@@ -1,4 +1,5 @@
 class TwonksController < ApplicationController
+  before_filter :login_required, :except => [:index, :show]
   def index
     @twonks = Twonk.find(:all)
   end
@@ -21,6 +22,6 @@ class TwonksController < ApplicationController
   end
   
   def show
-    @twonk = Twonk.find(params[:id], :include => [:votes])
+    @twonk = Twonk.find(params[:id], :include => :votes)
   end
 end

@@ -1,4 +1,12 @@
 <h2><%= @twonk.name %> is a twonk!</h2>
-And here's why...
-  They have <%= pluralize(@twonk.votes.count, "vote")  %> 
+<small><%= pluralize(@twonk.vote_count, "vote") %></small>
 
+<h3><%= pluralize(@twonk.for_votes.size, "person") %> think <%= @twonk.name %> is really a twonk...</h3>
+<table class='for-votes'>
+    <%= render :partial => @twonk.for_votes %>
+</table>
+<h3><%= pluralize(@twonk.against_votes.size, "person") %> beg to differ...</h3>
+
+<table class='against-votes'>
+    <%= render :partial => @twonk.against_votes %>
+</table>
