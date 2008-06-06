@@ -1,13 +1,15 @@
-<div>
-<div class='vote-number'>#<%= vote_counter %>
+<div class='vote'>
+<span class='number' align='left'>#<%= vote_counter %><br />
 <span class='user-image'>
-[user-image]
 <%= vote.user %>
+<% if vote.user == current_user %><br />
+  <%= link_to "Edit", edit_twonk_vote_path(vote) %>
+<% end %>
 </span>
-</div>
-<div class='vote-comment'>
-  <%= vote.comment %>
-</div>
+</span>
+<span class='comment'>
+  <%= vote.comment.gsub("\n", "<br />") %>
+</span>
 </div>
 <!-- ARGH THIS IS HIDEOUSSSSSS -->
 <%= "<br>" * 10 %>

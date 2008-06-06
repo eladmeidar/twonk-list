@@ -1,14 +1,22 @@
 <h2><%= @twonk.name %> is a twonk!</h2>
 <small><%= pluralize(@twonk.vote_count, "vote") %></small>
 
-<h3><%= pluralize(@twonk.for_votes.size, "person") %> think <%= @twonk.name %> is really a twonk...</h3>
-<%= link_to "Do you think #{@twonk.name} is a twonk too?", new_twonk_vote_path(@twonk) %>
+<h3><%= pluralize(@twonk.for_votes.size, "person") %> <%= @twonk.for_votes.size > 1 || @twonk.for_votes.size == 0 ? "think" : "thinks" %> <%= @twonk.name %> is really a twonk...</h3>
+<% unless @twonk.voters.include?(current_user) %>
+  <%= link_to "Do you think #{@twonk.name} is a twonk too?", new_twonk_vote_path(@twonk) %>
+<% else %>
+  You have already voted!
+<% end %>
 <table class='for-votes'>
-    <%= render :partial => @twonk.for_votes %>
+  <%= render :partial => @twonk.for_votes %>
 </table>
 <h3><%= pluralize(@twonk.against_votes.size, "person") %>
   <%= @twonk.against_votes.size > 1 || @twonk.against_votes.size == 0 ? "beg" : "begs" %> to differ...</h3>
-<%= link_to "Do you think #{@twonk.name} is NOT a twonk?", new_twonk_vote_path(@twonk, :positive => false) %>
+  <% unless @twonk.voters.include?(current_user) %>
+    <%= link_to "Do you think #{@twonk.name} is NOT a twonk?", new_twonk_vote_path(@twonk, :positive => false) %>
+  <% else %>
+    You have already voted.
+  <% end %>
 <table class='against-votes'>
-    <%= render :partial => @twonk.against_votes %>
+  <%= render :partial => @twonk.against_votes %>
 </table>

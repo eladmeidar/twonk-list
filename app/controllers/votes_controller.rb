@@ -1,8 +1,10 @@
 class VotesController < ApplicationController
+  before_filter :login_required
   before_filter :find_twonk
+  before_filter :check_for_vote, :only => [:new, :create]
   def new
-   @vote = @twonk.votes.build(:user_id => session[:user])
-   @vote.positive = params[:positive] 
+     @vote = @twonk.votes.build(:user_id => session[:user])
+     @vote.positive = params[:positive] 
   end 
 
   def create
@@ -21,10 +23,41 @@ class VotesController < ApplicationController
       render :action => "new"
     end
   end
+ 
+  def edit
+    @vote = Vote.find(params[:id])
+    check_for_ownership
+  end
+  
+  def update
+    @vote = Vote.find(params[:id])
+    check_for_ownership
+    if @vote.update_attributes(params[:vote])
+      flash[:success] = "Your vote has been changed!"
+      redirect_to twonk_path(@twonk)
+    else
+      flash[:failure] = "Your vote could not be changed."
+      render :action => "edit"
+    end
+  end
 
   private
 
+    def check_for_ownership
+       unless @vote.user == current_user
+         flash[:failure] = "That vote does not belong to you, you twonk!"
+	 redirect_to twonk_path(@twonk)
+       end 
+    end 
+         
+    def check_for_vote
+      if @twonk.voters.include?(current_user)
+        flash[:notice] = "You have already voted for #{@twonk.name}, you twonk!"
+	redirect_to twonk_path(@twonk)
+      end
+    end 
+
     def find_twonk
-    @twonk = Twonk.find(params[:twonk_id]) unless params[:twonk_id].nil?
+      @twonk = Twonk.find(params[:twonk_id]) unless params[:twonk_id].nil?
     end
 end

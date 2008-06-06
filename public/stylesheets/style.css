@@ -6,14 +6,21 @@ body {
 a {
   color:white;
 }
-.vote-number {
+img { 
+  border:0px;
+}
+.vote {
+  width:100%;
+}
+.vote .number {
   float:left;
   font-size:13pt;
 }
-.vote-comment {
+.vote .comment {
   float:left;
-  padding:50px;
-  border:1px solid red;
-  margin:20px;
+  padding:5px;
+  background:#343434;
+  border:1px solid #171717;
+  margin-left:20px;
 }
 

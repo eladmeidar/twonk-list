@@ -1,0 +1,11 @@
+<% form_for [@twonk, @vote] do |f| %>
+  <p>
+  <%= f.label "positive", "For or Against" %><br /> 
+  <%= f.radio_button "positive", true %>
+  <%= f.label "vote_positive_true", "For" %><br />
+  <%= f.radio_button "positive", false %>
+  <%= f.label "vote_positive_false", "Against" %><br />
+
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <%= submit_tag "Create" %>
+<% end %>
