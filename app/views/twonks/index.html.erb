@@ -1,3 +1,4 @@
+<h1>Top Twonks!</h2>
 <% for twonk in @twonks %>
-<%= twonk %>
+<%= link_to twonk.name, twonk_path(twonk) %>
 <% end %>

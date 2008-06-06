@@ -3,6 +3,9 @@ body {
   color:#fbac10;
   font:12pt sans-serif;
 }
+a {
+  color:white;
+}
 .vote-number {
   float:left;
   font-size:13pt;
