@@ -1,4 +1,4 @@
 <h1>Top Twonks!</h2>
 <% for twonk in @twonks %>
-<%= link_to twonk.name, twonk_path(twonk) %> - <%= twonk.for_votes.size %> vote
+<%= link_to twonk.name, twonk_path(twonk) %> - <%= pluralize twonk.vote_count, "vote" %><br />
 <% end %>

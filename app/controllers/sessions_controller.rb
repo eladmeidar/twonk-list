@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
       redirect_back_or_default('/')
       flash[:notice] = "Logged in successfully"
     else
+      flash[:failure] = "We could not log you in, try again?"
       render :action => 'new'
     end
   end
