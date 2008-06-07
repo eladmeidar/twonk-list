@@ -34,9 +34,13 @@ float:right;
   margin-left:20px;
 }
 /* Spiffy corners! http://www.spiffycorners.com */
+.quote-bubble {
+  position:relative;
+  left:75px;
+}
 .spiffy{
   display:block;
-  width:300px;
+  width:500px;
 }
 
 .spiffy *{
@@ -80,7 +84,7 @@ float:right;
 
 .spiffyfg{
   padding:5px;
-  width:290px;
+  width:490px;
   color:black;
   background:#ffffff}
 </style>

@@ -1,5 +1,7 @@
 <div class='number' align='left'>
-  #<%= vote_counter %> - <%= vote.user %> - <% if vote.user == current_user %> <%= link_to "Edit", edit_twonk_vote_path(vote) %><% end %>
+  #<%= vote_counter %> - <%= vote.user %> <% if vote.user == current_user %> - <%= link_to "Edit", edit_twonk_vote_path(vote) %><% end %>
+  <br>
+<%= image_tag "quote-bubble.jpg", :class => "quote-bubble" %>
 </div>
 <span>
   <b class="spiffy">
