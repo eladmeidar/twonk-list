@@ -1,0 +1,31 @@
+<div id='other-user-menu'>
+  <h1>You! - <%= @user.login %></h1>
+  <div align='center'>
+  </div>
+  <b>Followers</b>: <%= @user.followers.size %>
+  <h2>Following</h2>
+  <% unless @user.following.empty? %>
+    <%= render :partial => @user.following %> 
+  <% else %>
+    You are not following anybody, yet.
+  <% end %>
+  <h2>Followers</h2>
+  <% unless @user.followers.empty? %>
+    <%= render :partial => @user.followers %>
+  <% else %>
+    You have no followers, yet.
+  <% end %>
+</div>
+<div class='chirp-hole'>
+  <% remote_form_for @status do |f| %>
+  <%= f.text_area "status", :cols => 70, :rows => 3 %>
+  <%= f.submit "Chirp!" %>
+  <% end %>
+</div>
+<table id='timeline' cellspacing='0' cellpadding='5' width='70%'>
+<% unless @user.statuses.empty? %>
+  <%= render :partial => @user.statuses %>
+<% else %>
+  <tr><td>You haven't chirped anything!</td></tr>
+<% end %>
+</table> 

@@ -1,13 +1,24 @@
 body {
   background:#232323;
-  color:#fbac10;
   font:12pt sans-serif;
+  color:white;
 }
 a {
   color:white;
 }
+h2, h3 {
+  margin:0px;
+  padding:0px;
+  color:#fbac10;
+}
+small {
+font-style:italic;
+}
 img { 
   border:0px;
+}
+#menu {
+float:right;
 }
 .vote {
   width:100%;
@@ -19,8 +30,58 @@ img {
 .vote .comment {
   float:left;
   padding:5px;
-  background:#343434;
-  border:1px solid #171717;
+  background:white;
   margin-left:20px;
 }
+/* Spiffy corners! http://www.spiffycorners.com */
+.spiffy{
+  display:block;
+  width:300px;
+}
+
+.spiffy *{
+  display:block;
+  height:1px;
+  overflow:hidden;
+  font-size:.01em;
+  background:#ffffff}
+
+.spiffy1{
+  margin-left:3px;
+  margin-right:3px;
+  padding-left:1px;
+  padding-right:1px;
+  border-left:1px solid #818181;
+  border-right:1px solid #818181;
+  background:#c8c8c8}
+
+.spiffy2{
+  margin-left:1px;
+  margin-right:1px;
+  padding-right:1px;
+  padding-left:1px;
+  border-left:1px solid #393939;
+  border-right:1px solid #393939;
+  background:#d5d5d5}
+
+.spiffy3{
+  margin-left:1px;
+  margin-right:1px;
+  border-left:1px solid #d5d5d5;
+  border-right:1px solid #d5d5d5;}
+
+.spiffy4{
+  border-left:1px solid #818181;
+  border-right:1px solid #818181}
+
+.spiffy5{
+  border-left:1px solid #c8c8c8;
+  border-right:1px solid #c8c8c8}
+
+.spiffyfg{
+  padding:5px;
+  width:290px;
+  color:black;
+  background:#ffffff}
+</style>
 

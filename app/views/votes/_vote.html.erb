@@ -1,16 +1,26 @@
-<div class='vote'>
-<span class='number' align='left'>#<%= vote_counter %><br />
-<span class='user-image'>
-<%= vote.user %>
-<% if vote.user == current_user %><br />
-  <%= link_to "Edit", edit_twonk_vote_path(vote) %>
-<% end %>
-</span>
-</span>
-<span class='comment'>
-  <%= vote.comment.gsub("\n", "<br />") %>
-</span>
+<div class='number' align='left'>
+  #<%= vote_counter %> - <%= vote.user %> - <% if vote.user == current_user %> <%= link_to "Edit", edit_twonk_vote_path(vote) %><% end %>
 </div>
-<!-- ARGH THIS IS HIDEOUSSSSSS -->
-<%= "<br>" * 10 %>
+<span>
+  <b class="spiffy">
+  <b class="spiffy1"><b></b></b>
+  <b class="spiffy2"><b></b></b>
+  <b class="spiffy3"></b>
+  <b class="spiffy4"></b>
+  <b class="spiffy5"></b></b>
 
+  <div class="spiffyfg">
+     <%= vote.comment.gsub("\n", "<br />") %>
+  </div>
+
+  <b class="spiffy">
+  <b class="spiffy5"></b>
+  <b class="spiffy4"></b>
+  <b class="spiffy3"></b>
+  <b class="spiffy2"><b></b></b>
+  <b class="spiffy1"><b></b></b></b>
+</span>
+
+
+<!-- ARGH THIS IS HIDEOUSSSSSS -->
+<div></div>

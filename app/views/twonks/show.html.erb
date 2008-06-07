@@ -1,6 +1,6 @@
-<h2><%= @twonk.name %> is a twonk!</h2>
-<small><%= pluralize(@twonk.vote_count, "vote") %></small>
+<h2><%= @twonk.name %> is <%= "not" if @twonk.for_votes.size <= @twonk.against_votes.size %> a twonk!</h2>
 
+<small><%= pluralize(@twonk.for_votes.size, "vote") %> for, <%= pluralize(@twonk.against_votes.size, "vote") %> against</small><br /><br />
 <h3><%= pluralize(@twonk.for_votes.size, "person") %> <%= @twonk.for_votes.size > 1 || @twonk.for_votes.size == 0 ? "think" : "thinks" %> <%= @twonk.name %> is really a twonk...</h3>
 <% unless @twonk.voters.include?(current_user) %>
   <%= link_to "Do you think #{@twonk.name} is a twonk too?", new_twonk_vote_path(@twonk) %>

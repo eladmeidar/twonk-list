@@ -1,0 +1,28 @@
+<div id='other-user-menu'>
+  <h1><%= @user.login %></h1>
+  <div align='center'>
+    <% unless current_user.following.include?(@user) || @user == current_user %>
+      <%= link_to "Follow #{@user}", follow_user_path(@user), :method => "put", :id => "follow" %>
+    <% end %>
+  </div>
+  <b>Followers</b>: <%= @user.followers.size %>
+  <h2>Following</h2>
+  <% unless @user.following.empty? %>
+    <% for user in @user.following %>
+      <%= user %>
+    <% end %>
+  <% else %>
+    This user is not following anybody, yet.
+  <% end %>
+  <h2>Followers</h2>
+  <% unless @user.followers.empty? %>
+    <% for user in @user.followers %>
+      <%= user %>
+    <% end %>
+  <% else %>
+    This user has no followers, yet.
+  <% end %>
+</div>
+<table id='timeline' cellspacing='0'>
+  <%= render :partial => @user.statuses %>
+</table> 

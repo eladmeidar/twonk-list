@@ -33,6 +33,7 @@ class VotesController < ApplicationController
     @vote = Vote.find(params[:id])
     check_for_ownership
     if @vote.update_attributes(params[:vote])
+       @vote.positive = true if params[:vote][:positive] == "true"
       flash[:success] = "Your vote has been changed!"
       redirect_to twonk_path(@twonk)
     else

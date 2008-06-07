@@ -22,6 +22,6 @@ class TwonksController < ApplicationController
   end
   
   def show
-    @twonk = Twonk.find(params[:id], :include => :votes)
+    @twonk = Twonk.find(params[:id], :include => [:for_votes, :against_votes, :votes])
   end
 end
