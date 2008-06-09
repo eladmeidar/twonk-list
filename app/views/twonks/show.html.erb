@@ -1,4 +1,4 @@
-<h2><%= @twonk.name %> is <%= "not" if @twonk.for_votes.size <= @twonk.against_votes.size %> a twonk!</h2>
+<h2><%= @twonk.name %> of <%= @twonk.location %> is <%= "not" if @twonk.for_votes.size <= @twonk.against_votes.size %> a twonk!</h2>
 
 <small><%= pluralize(@twonk.for_votes.size, "vote") %> for, <%= pluralize(@twonk.against_votes.size, "vote") %> against for a total of <%= @twonk.votes.size %> votes and a twonk rating of <%= @twonk.vote_count %></small><br /><br />
 <h3><%= pluralize(@twonk.for_votes.size, "person") %> <%= @twonk.for_votes.size > 1 || @twonk.for_votes.size == 0 ? "think" : "thinks" %> <%= @twonk.name %> is really a twonk...</h3>
