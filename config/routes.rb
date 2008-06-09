@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :twonks do |twonk|
     twonk.resources :votes
   end
+  map.your_twonks 'your_twonks', :controller => "users", :action => "your_twonks"
   map.resources :users
   map.resources :sessions
   map.connect ':controller/:action/:id'

@@ -5,11 +5,12 @@
   <body>
 <div id='menu'>
 <% if logged_in? %>
-<b><%= link_to "Nominate New Twonk!", new_twonk_path %></b> | 
-<%= link_to "Logout", logout_path %>
+  <b><%= link_to "Nominate New Twonk!", new_twonk_path %></b> | 
+  <%= link_to "Your Nominations", your_twonks_path %> |
+  <%= link_to "Logout", logout_path %>
 <% else %>
-<%= link_to "Login", login_path %> |
-<%= link_to "Signup", signup_path %>
+  <%= link_to "Login", login_path %> |
+  <%= link_to "Signup", signup_path %>
 <% end %>
 | <%= link_to "About", about_path %>
 </div>

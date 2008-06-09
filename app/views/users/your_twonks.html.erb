@@ -1,0 +1,6 @@
+<h1>Your Twonks</h1>
+<% unless @twonks.empty? %>
+  <%= render :partial => @twonks %>
+<% else %>
+  You have not yet nominated any twonks!
+<% end %>

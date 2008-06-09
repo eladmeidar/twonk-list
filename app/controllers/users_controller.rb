@@ -24,4 +24,7 @@ class UsersController < ApplicationController
     end
   end
 
+  def your_twonks
+    @twonks = current_user.nominations.find(:all, :order => "vote_count DESC")
+  end
 end
