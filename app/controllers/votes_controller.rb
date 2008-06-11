@@ -8,7 +8,7 @@ class VotesController < ApplicationController
   end 
 
   def create
-    @vote = @twonk.votes.build(params[:vote])
+    @vote = @twonk.votes.build(params[:vote].merge!(:user => current_user)
     if @vote.save
       if @vote.positive?
       flash[:success] = "You think #{@twonk.name} is really a twonk."
