@@ -10,7 +10,8 @@ class TwonksController < ApplicationController
   end
 
   def create
-    @twonk = current_user.nominations.new(params[:twonk].merge({ :vote_count => 1 }))
+    @twonk = current_user.nominations.new(params[:twonk])
+    @twonk.vote_count = 1
     if @twonk.save
       @twonk.votes.create(:user => current_user, :comment => params[:vote][:comment])
       flash[:success] = "Twonk has been nominated!"
