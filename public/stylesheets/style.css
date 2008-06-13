@@ -1,34 +1,43 @@
-body {
-  background:#232323;
-  font:12pt sans-serif;
-  color:white;
-}
-a {
-  color:white;
-}
-h2, h3 {
-  margin:0px;
-  padding:0px;
-  color:#fbac10;
-}
-small {
-font-style:italic;
-}
-img { 
-  border:0px;
-}
-#menu {
-float:right;
-}
+* { margin: 0; padding: 0; font-family: "Lucida Grande", "Trebuchet MS", sans-serif; font-size: 100%; }
+body { background-color: #232323; color: #ffffff; padding: 1em; }
+#header { margin: -1em 0 0 -1em; }
+#menu { float: right; padding: 0.4em; background-color: #fbae10; margin: -1em -1em 0 0; }
+#menu a { color: #ffffff; }
+a { color: #fbae10; }
+h1 { font-size: 160%; margin-bottom: 0.5em;; font-weight: bold; }
+h2 { font-size: 120%; margin-bottom: 0.5em; font-weight: bold; }
+p { margin-bottom: 1em; }
+small { font-style: italic; }
+img { border: 0; }
+
+
+
+
+label { width: 10em; display: block; float: left; text-align: right; padding: 0.2em 0.3em 0 0; }
+input.check { vertical-align: middle ;}
+input, textarea { width: 20em; }
+input.submit { margin-left: 10.3em; width: 8em; }
+form div { clear: left; margin: 0.5em; }
+
+
+
+#flashes { margin-bottom: 1em; background-color: #fbae10; padding: 1em; }
+
+#footer { margin: 1em 0 0 0; padding-top: 1em; border-top: 1px solid #a0a0a0; }
+
+div.number { margin-bottom: -4px; }
+.vote-end { margin-bottom: 1em; }
+
+
 .vote {
   width:100%;
 }
 .vote .number {
-  float:left;
-  font-size:13pt;
+  float: left;
+  
 }
 .vote .comment {
-  float:left;
+  float: left;
   padding:5px;
   background:white;
   margin-left:20px;
@@ -87,5 +96,3 @@ float:right;
   width:490px;
   color:black;
   background:#ffffff}
-</style>
-

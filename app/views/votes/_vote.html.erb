@@ -1,7 +1,7 @@
-<div class='number' align='left'>
+<div class='number'>
   #<%= vote_counter %> - <%= vote.user %> <% if vote.user == current_user %> - <%= link_to "Edit", edit_twonk_vote_path(vote) %><% end %>
   <br>
-<%= image_tag "quote-bubble.jpg", :class => "quote-bubble" %>
+  <%= image_tag "quote-bubble.jpg", :class => "quote-bubble" %>
 </div>
 <span>
   <b class="spiffy">
@@ -12,7 +12,7 @@
   <b class="spiffy5"></b></b>
 
   <div class="spiffyfg">
-     <%= vote.comment.gsub("\n", "<br />") %>
+    <%= vote.comment.gsub("\n", "<br>") %>
   </div>
 
   <b class="spiffy">
@@ -25,4 +25,4 @@
 
 
 <!-- ARGH THIS IS HIDEOUSSSSSS -->
-<div></div>
+<div class="vote-end"></div>
