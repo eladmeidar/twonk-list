@@ -15,7 +15,7 @@ class TwonksController < ApplicationController
     if @twonk.save
       @twonk.votes.create(:user => current_user, :comment => params[:vote][:comment])
       flash[:success] = "Twonk has been nominated!"
-      redirect_to twonk_path(@twonk)
+      redirect_to @twonk
     else
       flash[:failure] = "Twonk could not be nominated!"
       render :action => "new"
