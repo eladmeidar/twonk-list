@@ -2,11 +2,15 @@
 <h1>Login</h1>
 <p class='short-description'>Welcome back!</p>
 <% form_tag login_path do -%>
-<p><label for="login">Login</label><br/>
-<%= text_field_tag :login %></p>
-
-<p><label for="password">Password</label><br/>
-<%= password_field_tag :password %></p>
-
-<p><%= submit_tag 'Login' %></p>
+  <div>
+    <label for="login">Login</label>
+    <%= text_field_tag :login %>
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <%= password_field_tag :password %></p>
+  </div>
+  <div>
+    <%= submit_tag 'Login' %>
+  </div>
 <% end -%>

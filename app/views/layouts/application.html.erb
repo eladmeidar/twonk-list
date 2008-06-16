@@ -1,23 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
     <%= stylesheet_link_tag "style" %>
   </head>
   <body>
-<div id='menu'>
-<% if logged_in? %>
-  <b><%= link_to "Nominate New Twonk!", new_twonk_path %></b> | 
-  <%= link_to "Your Nominations", your_twonks_path %> |
-  <%= link_to "Logout", logout_path %>
-<% else %>
-  <%= link_to "Login", login_path %> |
-  <%= link_to "Signup", signup_path %>
-<% end %>
-| <%= link_to "About", about_path %>
-</div>
-<%= link_to image_tag("twonklist.jpg"), root_path %><br />
-<% for message in flash %>
-<div class='flash' id='<%= message.first %>'><%= message.last  %></div>
-<% end %>
-<%= yield %>
+    <div id='menu'>
+      <% if logged_in? %>
+        <b><%= link_to "Nominate New Twonk!", new_twonk_path %></b> | 
+        <%= link_to "Your Nominations", your_twonks_path %> |
+        <%= link_to "Logout", logout_path %>
+      <% else %>
+        <%= link_to "Login", login_path %> |
+        <%= link_to "Signup", signup_path %>
+      <% end %>
+      | <%= link_to "About", about_path %>
+    </div>
+    <div id="header">
+      <%= link_to image_tag((controller.controller_name == 'twonks' and controller.action_name == 'index') ? "twonklist.jpg" : "twonklist_small.jpg"), root_path %><br />
+    </div>
+    <div id="main">
+      <% unless flash.empty? %>
+        <div id="flashes">
+          <% for message in flash %>
+            <div class='flash' id='<%= message.first %>'><%= message.last  %></div>
+          <% end %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+    <p id="footer">
+      Created by <%= link_to('Ryan Bigg', :url => 'http://frozenplague.net/') %>, styled by <%= link_to('Brenton Fletcher', 'http://i.bloople.net') %>.
+    </p>
 </body>
 </html>
