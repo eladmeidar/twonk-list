@@ -16,7 +16,7 @@
       | <%= link_to "About", about_path %>
     </div>
     <div id="header">
-      <%= link_to image_tag((controller.controller_name == 'twonks' and controller.action_name == 'index') ? "twonklist.jpg" : "twonklist_small.jpg"), root_path %><br />
+      <%= link_to image_tag((params[:controller] == 'twonks' && params[:action] == 'index') ? "twonklist.jpg" : "twonklist_small.jpg"), root_path %><br />
     </div>
     <div id="main">
       <% unless flash.empty? %>
