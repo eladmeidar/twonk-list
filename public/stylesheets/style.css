@@ -26,7 +26,7 @@ form div.fieldWithErrors { clear: none; margin: 0; }
 #flashes { margin-bottom: 1em; background-color: #fbae10; padding: 1em; }
 
 #footer { margin: 1em 0 0 0; padding-top: 1em; border-top: 1px solid #a0a0a0; }
-
+#most_recent_twonks { float:right; }
 div.number { margin-bottom: -4px; }
 .vote-end { margin-bottom: 1em; }
 
@@ -47,7 +47,7 @@ div.number { margin-bottom: -4px; }
 /* Spiffy corners! http://www.spiffycorners.com */
 .quote-bubble {
   position:relative;
-  left:75px;
+  left:25px;
 }
 .spiffy{
   display:block;

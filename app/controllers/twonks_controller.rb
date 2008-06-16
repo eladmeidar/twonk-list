@@ -1,7 +1,8 @@
 class TwonksController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
   def index
-    @twonks = Twonk.find(:all, :order => "vote_count DESC", :limit => 10)
+    @top_twonks = Twonk.find(:all, :order => "vote_count DESC", :limit => 20)
+    @most_recent_twonks = Twonk.find(:all, :order => "id DESC", :limit => 20)
   end
 
   def new
