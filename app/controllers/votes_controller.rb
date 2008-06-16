@@ -4,7 +4,7 @@ class VotesController < ApplicationController
   before_filter :check_for_vote, :only => [:new, :create]
   def new
      @vote = @twonk.votes.build(:user_id => session[:user])
-     @vote.positive = params[:positive] 
+     @vote.positive = params[:positive] == "true"
   end 
 
   def create
