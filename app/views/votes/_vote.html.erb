@@ -12,7 +12,7 @@
   <b class="spiffy5"></b></b>
 
   <div class="spiffyfg">
-    <%= vote.comment.gsub("\n", "<br>") %>
+    <%= (h vote.comment).gsub("\n", "<br>") %>
   </div>
 
   <b class="spiffy">
