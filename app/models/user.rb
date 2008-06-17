@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
   has_many :votes
   has_many :nominations, :class_name => "Twonk", :foreign_key => "nominated_by_id"
-  has_many :twonks, :through => :votes
+  has_many :twonks, :through => :nominations
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?

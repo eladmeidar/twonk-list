@@ -1,8 +1,9 @@
 class TwonksController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
   def index
-    @top_twonks = Twonk.find(:all, :order => "vote_count DESC", :limit => 20)
+    @top_twonks = Twonk.find(:all, :order => "votes_count DESC", :limit => 20)
     @most_recent_twonks = Twonk.find(:all, :order => "id DESC", :limit => 20)
+    @users = User.find(:all, :order => "nomination_count DESC", :limit => 20)
   end
 
   def new
@@ -12,7 +13,7 @@ class TwonksController < ApplicationController
 
   def create
     @twonk = current_user.nominations.new(params[:twonk])
-    @twonk.vote_count = 1
+    @twonk.votes_count = 1
     if @twonk.save
       @twonk.votes.create(:user => current_user, :comment => params[:vote][:comment])
       flash[:success] = "Twonk has been nominated!"

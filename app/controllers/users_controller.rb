@@ -25,6 +25,6 @@ class UsersController < ApplicationController
   end
 
   def your_twonks
-    @twonks = current_user.nominations.find(:all, :order => "vote_count DESC")
+    @twonks = current_user.nominations.find(:all, :order => "votes_count DESC")
   end
 end

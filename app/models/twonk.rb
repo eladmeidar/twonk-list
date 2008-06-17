@@ -6,8 +6,5 @@ class Twonk < ActiveRecord::Base
   attr_accessible :name, :location
   validates_presence_of :name, :location
   validates_uniqueness_of :name, :scope => :location
-  def self.most_twonky
-    find(:all, :order => "vote_count")
-  end
 
 end

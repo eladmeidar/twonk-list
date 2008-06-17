@@ -1,11 +1,11 @@
 <h1><%= @twonk.name %> of <%= @twonk.location %> is <%= "not" if @twonk.for_votes.size <= @twonk.against_votes.size %> a twonk!</h1>
 
-<p><small><%= pluralize(@twonk.for_votes.size, "vote") %> for, <%= pluralize(@twonk.against_votes.size, "vote") %> against for a total of <%= @twonk.votes.size %> votes and a twonk rating of <%= @twonk.vote_count %></small></p>
+<p><small><%= pluralize(@twonk.for_votes.size, "vote") %> for, <%= pluralize(@twonk.against_votes.size, "vote") %> against for a total of <%= @twonk.votes.size %> votes and a twonk rating of <%= @twonk.votes_count %></small></p>
 
 <h2><%= pluralize(@twonk.for_votes.size, "person") %> <%= @twonk.for_votes.size > 1 || @twonk.for_votes.size == 0 ? "think" : "thinks" %> <%= @twonk.name %> is really a twonk...</h2>
 <p>
   <% unless @twonk.voters.include?(current_user) %>
-    <%= link_to "Do you think #{@twonk.name} is a twonk too?", new_twonk_vote_path(@twonk) %>
+    <%= link_to "Do you think #{@twonk.name} is a twonk too?", new_twonk_vote_path(@twonk, :positive => true) %>
   <% else %>
     You have already voted!
   <% end %>

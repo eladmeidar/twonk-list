@@ -12,10 +12,8 @@ class VotesController < ApplicationController
     if @vote.save
       if @vote.positive?
       flash[:success] = "You think #{@twonk.name} is really a twonk."
-      @twonk.increment!(:vote_count)
       else
       flash[:success] = "You don't think #{@twonk.name} is really a twonk."
-      @twonk.decrement!(:vote_count)
       end
       redirect_to twonk_path(@twonk)
     else
@@ -34,10 +32,6 @@ class VotesController < ApplicationController
     check_for_ownership
     @vote.positive = params[:vote][:positive] == "true"
     params[:vote].delete(:positive)
-    if @vote.positive_changed?
-      @twonk.increment!(:vote_count) if @vote.positive == true
-      @twonk.decrement!(:vote_count) if @vote.positive == false
-    end
     if @vote.update_attributes(params[:vote])
       flash[:success] = "Your vote has been changed!"
       redirect_to twonk_path(@twonk)
