@@ -7,9 +7,3 @@
   <h1>Top Twonks</h1>
   <%= render :partial => @top_twonks %>
 </div>
-
-<div id='most_grudges'>
-  <h1>Most Grudges</h1>
-  <% for user in @users %>
-    <%= user %> - <%= user.nomination_count %><br />
-  <% end %>
