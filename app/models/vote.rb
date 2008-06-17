@@ -1,6 +1,6 @@
 class Vote < ActiveRecord::Base
   belongs_to :twonk
-  belongs_to :user
+  belongs_to :user, :counter_cache => "nomination_count"
 #  acts_as_snook :author_field => :user, :body_field => :comment
   
   before_save :change_vote_count

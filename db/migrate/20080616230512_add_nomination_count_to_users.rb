@@ -1,6 +1,6 @@
 class AddNominationCountToUsers < ActiveRecord::Migration
   def self.up
-    add_column :users, :nomination_count, :integer
+    add_column :users, :nomination_count, :integer, :default => 0
   end
 
   def self.down

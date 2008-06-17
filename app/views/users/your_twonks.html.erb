@@ -1,4 +1,4 @@
-<h1>Your Twonks</h1>
+<h1>You've nominated <%= pluralize(current_user.nomination_count, "twonk") %></h1>
 <% unless @twonks.empty? %>
   <%= render :partial => @twonks %>
 <% else %>

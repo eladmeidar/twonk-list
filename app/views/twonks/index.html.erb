@@ -11,5 +11,5 @@
 <div id='most_grudges'>
   <h1>Most Grudges</h1>
   <% for user in @users %>
-    <%= user %> - <%= user.nominations.size %><br />
+    <%= user %> - <%= user.nomination_count %><br />
   <% end %>
