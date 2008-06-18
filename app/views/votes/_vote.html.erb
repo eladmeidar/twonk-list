@@ -3,26 +3,8 @@
   <br>
   <%= image_tag "quote-bubble.jpg", :class => "quote-bubble" %>
 </div>
-<span>
-  <b class="spiffy">
-  <b class="spiffy1"><b></b></b>
-  <b class="spiffy2"><b></b></b>
-  <b class="spiffy3"></b>
-  <b class="spiffy4"></b>
-  <b class="spiffy5"></b></b>
+<%= render :partial => (vote.user == current_user ? "mine" : "yours"), :locals => { :vote => vote } %>
 
-  <div class="spiffyfg">
-    <%= (h vote.comment).gsub("\n", "<br>") %>
-  </div>
-
-  <b class="spiffy">
-  <b class="spiffy5"></b>
-  <b class="spiffy4"></b>
-  <b class="spiffy3"></b>
-  <b class="spiffy2"><b></b></b>
-  <b class="spiffy1"><b></b></b></b>
-</span>
-
-
-<!-- ARGH THIS IS HIDEOUSSSSSS -->
 <div class="vote-end"></div>
+
+

@@ -6,6 +6,7 @@
 <% end %>
 </h1>
 <% form_for [@twonk, @vote] do |f| %>
+<%= error_messages_for :vote %>
   <p>You may tell the world why you think this person is <%= "not" unless @vote.positive? -%> a twonk if you feel the need, or you can click the button right away!</p>
   <p>You can come back later and change your comment, and your vote, if you change your mind.</p>
   <%= render :partial => "form", :locals => { :f => f } %>

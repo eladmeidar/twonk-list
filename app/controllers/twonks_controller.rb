@@ -15,7 +15,7 @@ class TwonksController < ApplicationController
     @twonk = current_user.nominations.new(params[:twonk])
     @twonk.votes_count = 1
     if @twonk.save
-      @twonk.votes.create(:user => current_user, :comment => params[:vote][:comment])
+      @vote = @twonk.votes.create(:user => current_user, :comment => params[:vote][:comment])
       flash[:success] = "Twonk has been nominated!"
       redirect_to @twonk
     else

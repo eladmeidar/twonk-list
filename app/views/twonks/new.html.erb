@@ -1,13 +1,13 @@
 <h1>New Twonk Nomination</h1>
 <% form_for(@twonk) do |f| %>
+  <%= error_messages_for :twonk, :vote %>
   <%= render :partial => "form", :locals => { :f => f } %>
   <% fields_for @vote do |vote| %>
-    <div>
-      <%= vote.label :comment %>
-      <%= vote.text_area :comment %>
-    </div>
+    <%= render :partial => "votes/form", :locals => { :f => vote }%>
   <% end %>
   <div>
     <%= submit_tag "Nominate!", :class => 'submit' %>
   </div>
 <% end %>
+
+
