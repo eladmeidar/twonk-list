@@ -1,9 +1,9 @@
 <div class='number' align='left'>
-  #<%= vote_counter %> <% if vote.user == current_user %> - <%= link_to "Edit", edit_twonk_vote_path(vote.twonk, vote) %><% end %>
+  #<%= vote_counter %> <% if vote.user == current_user %> You! - <%= link_to "Edit", edit_twonk_vote_path(vote.twonk, vote) %><% end %>
   <br>
   <%= image_tag "quote-bubble.jpg", :class => "quote-bubble" %>
 </div>
-<%= render :partial => (vote.user == current_user ? "mine" : "yours"), :locals => { :vote => vote } %>
+<%= render :partial => "votes/" + (vote.user == current_user ? "mine" : "yours"), :locals => { :vote => vote } %>
 
 <div class="vote-end"></div>
 
