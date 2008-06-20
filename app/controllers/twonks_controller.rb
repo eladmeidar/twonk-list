@@ -1,10 +1,9 @@
 class TwonksController < ApplicationController
-  before_filter :login_required, :except => [:index, :show]
+  #before_filter :login_required, :except => [:index, :show]
   before_filter :check_for_ownership, :only => [:edit, :update, :destroy]
   def index
     @top_twonks = Twonk.find(:all, :order => "votes_count DESC", :limit => 20)
     @most_recent_twonks = Twonk.find(:all, :order => "id DESC", :limit => 20)
-    @users = User.find(:all, :order => "nomination_count DESC", :limit => 20)
   end
 
   def new

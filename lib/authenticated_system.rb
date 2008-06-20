@@ -63,8 +63,9 @@ module AuthenticatedSystem
     def access_denied
       respond_to do |format|
         format.html do
+          flash[:notice] = "Please log in before trying to do that."
           store_location
-          redirect_to new_session_path
+          redirect_to login_path
         end
         format.any do
           request_http_basic_authentication 'Web Password'

@@ -1,0 +1,6 @@
+plebian:
+  id: 1
+  login: plebian
+
+other_plebian:
+  login: other_plebian
