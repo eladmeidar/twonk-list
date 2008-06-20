@@ -1,0 +1,6 @@
+<h1>Editing <%= @twonk.name %></h1>
+
+<% form_for @twonk do |f| -%>
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <%= submit_tag "Save" %>
+<% end -%>

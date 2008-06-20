@@ -1,5 +1,7 @@
 <h1><%= @twonk.name %> of <%= @twonk.location %> is <%= "not" if @twonk.for_votes.size < @twonk.against_votes.size %> a twonk!</h1>
-
+<% if @twonk.nominated_by == current_user %>
+<%= link_to "Edit", edit_twonk_path(@twonk) %> | <%= link_to "Destroy", twonk_path(@twonk), :method => "delete", :confirm => "Are you sure you want to delete this twonk?" %>
+<% end %>
 <p><small><%= pluralize(@twonk.for_votes.size, "vote") %> for, <%= pluralize(@twonk.against_votes.size, "vote") %> against for a total of <%= @twonk.for_votes.size + @twonk.against_votes.size %> votes and a twonk rating of <%= @twonk.votes_count %></small></p>
 
 <h2><%= pluralize(@twonk.for_votes.size, "person") %> <%= @twonk.for_votes.size > 1 || @twonk.for_votes.size == 0 ? "think" : "thinks" %> <%= @twonk.name %> is really a twonk...</h2>
