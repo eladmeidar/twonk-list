@@ -1,6 +1,9 @@
 plebian:
   id: 1
   login: plebian
+  crypted_password: 9bc952b200b2677e273bb4a45e3cad87161334f
+  salt: cd664823346a4ce9db852b03f17ee7aeeb6903c4
+  email: plebian@plebians.org
 
 other_plebian:
   login: other_plebian

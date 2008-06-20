@@ -6,7 +6,7 @@ require 'spec'
 require 'spec/rails'
 
 def login_as(login)
-  session[:user] = users(login).id
+  request.session[:user_id] = users(login).id
 end 
 
 def access_denied_message

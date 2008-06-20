@@ -1,6 +1,7 @@
 class TwonksController < ApplicationController
-  #before_filter :login_required, :except => [:index, :show]
+  before_filter :login_required, :except => [:index, :show]
   before_filter :check_for_ownership, :only => [:edit, :update, :destroy]
+  
   def index
     @top_twonks = Twonk.find(:all, :order => "votes_count DESC", :limit => 20)
     @most_recent_twonks = Twonk.find(:all, :order => "id DESC", :limit => 20)
@@ -17,7 +18,7 @@ class TwonksController < ApplicationController
     if @twonk.save
       @vote = @twonk.votes.create(:user => current_user, :comment => params[:vote][:comment])
       flash[:success] = "Twonk has been nominated!"
-      redirect_to @twonk
+      redirect_to twonk_path(@twonk)
     else
       flash[:failure] = "Twonk could not be nominated!"
       render :action => "new"
@@ -52,5 +53,5 @@ class TwonksController < ApplicationController
       flash[:notice] = "That is not your twonk to change!"
       redirect_back_or_default(twonks_path)
     end  
-  end 
+  end
 end
