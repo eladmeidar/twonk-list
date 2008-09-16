@@ -1,4 +1,4 @@
-<h1><%= @twonk.name %> of <%= @twonk.location %> is <%= "not" if @twonk.for_votes.size < @twonk.against_votes.size %> a twonk!</h1>
+<h1><%= h(@twonk.name) %> of <%= h(@twonk.location) %> is <%= "not" if @twonk.for_votes.size < @twonk.against_votes.size %> a twonk!</h1>
 <% if @twonk.nominated_by == current_user %>
 <%= link_to "Edit", edit_twonk_path(@twonk) %> | <%= link_to "Destroy", twonk_path(@twonk), :method => "delete", :confirm => "Are you sure you want to delete this twonk?" %>
 <% end %>
@@ -7,7 +7,7 @@
 <h2><%= pluralize(@twonk.for_votes.size, "person") %> <%= @twonk.for_votes.size > 1 || @twonk.for_votes.size == 0 ? "think" : "thinks" %> <%= @twonk.name %> is really a twonk...</h2>
 <p>
   <% unless @twonk.voters.include?(current_user) %>
-    <%= link_to "Do you think #{@twonk.name} is a twonk too?", new_twonk_vote_path(@twonk, :positive => true) %>
+    <%= link_to "Do you think #{h(@twonk.name)} is a twonk too?", new_twonk_vote_path(@twonk, :positive => true) %>
   <% else %>
     You have already voted!
   <% end %>
@@ -16,7 +16,7 @@
 <h2><%= pluralize(@twonk.against_votes.size, "person") %> <%= @twonk.against_votes.size > 1 || @twonk.against_votes.size == 0 ? "beg" : "begs" %> to differ...</h2>
 <p>
   <% unless @twonk.voters.include?(current_user) %>
-    <%= link_to "Do you think #{@twonk.name} is NOT a twonk?", new_twonk_vote_path(@twonk, :positive => false) %>
+    <%= link_to "Do you think #{h(@twonk.name)} is NOT a twonk?", new_twonk_vote_path(@twonk, :positive => false) %>
   <% else %>
     You have already voted.
   <% end %>
