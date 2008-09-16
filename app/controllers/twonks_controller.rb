@@ -14,9 +14,9 @@ class TwonksController < ApplicationController
 
   def create
     @twonk = current_user.nominations.new(params[:twonk])
-    @twonk.votes_count = 1
+    puts current_user
     if @twonk.save
-      @vote = @twonk.votes.create(:user => current_user, :comment => params[:vote][:comment])
+      @vote = @twonk.votes.create(params[:vote].merge(:ip => current_user))
       flash[:success] = "Twonk has been nominated!"
       redirect_to twonk_path(@twonk)
     else
@@ -41,10 +41,14 @@ class TwonksController < ApplicationController
   
   def show
     @twonk = Twonk.find(params[:id], :include => [:for_votes, :against_votes, :votes])
+  rescue ActiveRecord::RecordNotFound
+    not_found
   end
   
   def destroy
     @twonk.destroy
+    flash[:success] = "#{@twonk} has been untwonked!"
+    redirect_to twonks_path
   end
   
   def check_for_ownership
@@ -52,6 +56,13 @@ class TwonksController < ApplicationController
     unless @twonk.nominated_by == current_user
       flash[:notice] = "That is not your twonk to change!"
       redirect_back_or_default(twonks_path)
-    end  
+    end
+  rescue ActiveRecord::RecordNotFound
+    not_found
+  end
+  
+  def not_found
+    flash[:failure] = "The twonk you were looking for no longer exists, or never existed."
+    redirect_to twonks_path
   end
 end

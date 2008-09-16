@@ -44,7 +44,7 @@ class VotesController < ApplicationController
   private
 
     def check_for_ownership
-       unless @vote.user == current_user
+       unless @vote.ip == current_user
          flash[:failure] = "That vote does not belong to you, you twonk!"
 	 redirect_to twonk_path(@twonk)
        end 
