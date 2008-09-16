@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  before_filter :check_for_dickheads
   include AuthenticatedSystem
   helper :all # include all helpers, all the time
   filter_parameter_logging :password, :password_confirmation 
@@ -13,4 +14,11 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+  
+  def check_for_dickheads
+    # Defaced the site on 16th Sep 2008
+    if !/^122\.109\..*/.match(request.remote_addr).nil?
+      redirect_to "http://www.google.com/search?q=how+not+to+be+a+fucktard"
+    end
+  end
 end
