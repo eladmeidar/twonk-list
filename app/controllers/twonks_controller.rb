@@ -13,8 +13,12 @@ class TwonksController < ApplicationController
   end
 
   def create
-    @twonk = current_user.nominations.new(params[:twonk])
-    puts current_user
+    # To stop you-know-who (Nick) from spamming my name...
+    if !/Ryan Bigg/.match(params[:twonk][:name]).nil? 
+      @twonk = Twonk.find_by_name("Ryan Bigg")
+      params[:vote][:comment] = ""
+    end
+    @twonk ||= current_user.nominations.new(params[:twonk])
     if @twonk.save
       @vote = @twonk.votes.create(params[:vote].merge(:ip => current_user))
       flash[:success] = "Twonk has been nominated!"
