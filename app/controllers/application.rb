@@ -20,6 +20,9 @@ class ApplicationController < ActionController::Base
     if !/^122\.109\..*/.match(request.remote_addr).nil? ||
     # Probably the same person as above.
        !/^124\.190\..*/.match(request.remote_addr).nil? 
+    # Spammed the site on the 18th Sep 2008, probably same person as above
+    # Site resolves to http://youhide.com
+       !/^208\.99\..*/.match(request.remote_addr).nil?
       redirect_to "http://www.google.com/search?q=how+not+to+be+a+fucktard"
     end
   end
