@@ -3,7 +3,7 @@ class VotesController < ApplicationController
   before_filter :find_twonk
   before_filter :check_for_vote, :only => [:new, :create]
   def new
-     @vote = @twonk.votes.build(:user_id => session[:user])
+     @vote = @twonk.votes.build(:ip => Ip.find_or_create_by_ip(request.remote_addr))
      @vote.positive = params[:positive] == "true"
   end 
 
