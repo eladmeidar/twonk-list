@@ -1,10 +1,8 @@
-require 'digest/sha1'
+require 'digest/md5'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password
-  has_many :votes
-  has_many :nominations, :class_name => "Twonk", :foreign_key => "nominated_by_id"
-  has_many :twonks, :through => :nominations
+
   validates_presence_of     :login
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
@@ -14,12 +12,9 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login, :case_sensitive => false
   before_save :encrypt_password
   
-  def to_s
-    login
-  end
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password, :password_confirmation, :nomination_count
+  attr_accessible :login, :password, :password_confirmation
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
@@ -29,7 +24,7 @@ class User < ActiveRecord::Base
 
   # Encrypts some data with the salt.
   def self.encrypt(password, salt)
-    Digest::SHA1.hexdigest("--#{salt}--#{password}--")
+    Digest::MD5.hexdigest("--#{salt}--#{password}--")
   end
 
   # Encrypts the password with the user salt
@@ -41,41 +36,12 @@ class User < ActiveRecord::Base
     crypted_password == encrypt(password)
   end
 
-  def remember_token?
-    remember_token_expires_at && Time.now.utc < remember_token_expires_at 
-  end
-
-  # These create and unset the fields required for remembering users between browser closes
-  def remember_me
-    remember_me_for 2.weeks
-  end
-
-  def remember_me_for(time)
-    remember_me_until time.from_now.utc
-  end
-
-  def remember_me_until(time)
-    self.remember_token_expires_at = time
-    self.remember_token            = encrypt("#{email}--#{remember_token_expires_at}")
-    save(false)
-  end
-
-  def forget_me
-    self.remember_token_expires_at = nil
-    self.remember_token            = nil
-    save(false)
-  end
-
-  # Returns true if the user has just been activated.
-  def recently_activated?
-    @activated
-  end
 
   protected
     # before filter 
     def encrypt_password
       return if password.blank?
-      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
+      self.salt = Digest::MD5.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
       self.crypted_password = encrypt(password)
     end
       

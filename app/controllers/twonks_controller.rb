@@ -3,8 +3,8 @@ class TwonksController < ApplicationController
   before_filter :check_for_ownership, :only => [:edit, :update, :destroy]
   
   def index
-    @top_twonks = Twonk.find(:all, :order => "votes_count DESC", :limit => 20)
-    @most_recent_twonks = Twonk.find(:all, :order => "id DESC", :limit => 20)
+    @top_twonks = Twonk.find(:all, :order => "votes_count DESC", :conditions => ["accepted = ?", true], :limit => 20)
+    @most_recent_twonks = Twonk.find(:all, :order => "id DESC", :conditions => ["accepted = ?", true],  :limit => 20)
   end
 
   def new
@@ -13,12 +13,7 @@ class TwonksController < ApplicationController
   end
 
   def create
-    # To stop you-know-who (Nick) from spamming my name...
-    if !/Ryan Bigg/.match(params[:twonk][:name]).nil? 
-      @twonk = Twonk.find_by_name("Ryan Bigg")
-      params[:vote][:comment] = ""
-    end
-    @twonk ||= current_user.nominations.new(params[:twonk])
+    @twonk = current_user.nominations.new(params[:twonk])
     if @twonk.save
       @vote = @twonk.votes.create(params[:vote].merge(:ip => current_user))
       flash[:success] = "Twonk has been nominated!"
@@ -44,7 +39,7 @@ class TwonksController < ApplicationController
   end
   
   def show
-    @twonk = Twonk.find(params[:id], :include => [:for_votes, :against_votes, :votes])
+    @twonk = Twonk.find(params[:id], :conditions => ["accepted = ?", true], :include => [:for_votes, :against_votes, :votes])
   rescue ActiveRecord::RecordNotFound
     not_found
   end
@@ -66,7 +61,7 @@ class TwonksController < ApplicationController
   end
   
   def not_found
-    flash[:failure] = "The twonk you were looking for no longer exists, or never existed."
+    flash[:failure] = "The twonk you were looking for is not accepted yet, no longer exists, or never existed."
     redirect_to twonks_path
   end
 end

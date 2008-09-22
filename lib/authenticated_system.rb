@@ -9,7 +9,7 @@ module AuthenticatedSystem
     # Accesses the current user from the session. 
     # Future calls avoid the database because nil is not equal to false.
     def current_user
-      Ip.find_or_create_by_ip(request.remote_addr)
+      @current_user ||= (login_from_session || login_from_basic_auth || login_from_cookie) unless @current_user == false
     end
 
     # Store the given user id in the session.
@@ -63,9 +63,8 @@ module AuthenticatedSystem
     def access_denied
       respond_to do |format|
         format.html do
-          flash[:notice] = "Please log in before trying to do that."
           store_location
-          redirect_to login_path
+          redirect_to new_admin_session_path
         end
         format.any do
           request_http_basic_authentication 'Web Password'
