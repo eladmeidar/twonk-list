@@ -94,7 +94,7 @@ module AuthenticatedSystem
     # Inclusion hook to make #current_user and #logged_in?
     # available as ActionView helper methods.
     def self.included(base)
-      base.send :helper_method, :current_user, :logged_in?
+      base.send :helper_method, :current_user, :logged_in?, :current_ip
     end
 
     # Called from #current_user.  First attempt to login by the user id stored in the session.

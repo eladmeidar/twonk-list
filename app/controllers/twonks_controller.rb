@@ -52,7 +52,7 @@ class TwonksController < ApplicationController
   
   def check_for_ownership
     @twonk = Twonk.find(params[:id])
-    unless @twonk.nominated_by == current_user
+    unless @twonk.nominated_by == current_ip
       flash[:notice] = "That is not your twonk to change!"
       redirect_back_or_default(twonks_path)
     end

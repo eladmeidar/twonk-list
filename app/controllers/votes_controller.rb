@@ -8,7 +8,7 @@ class VotesController < ApplicationController
   end 
 
   def create
-    @vote = @twonk.votes.build(params[:vote].merge!(:user => current_user))
+    @vote = @twonk.votes.build(params[:vote].merge!(:ip => current_ip))
     if @vote.save
       if @vote.positive?
       flash[:success] = "You think #{@twonk.name} is really a twonk."
@@ -44,14 +44,14 @@ class VotesController < ApplicationController
   private
 
     def check_for_ownership
-       unless @vote.ip == current_user
+       unless @vote.ip == current_ip
          flash[:failure] = "That vote does not belong to you, you twonk!"
 	 redirect_to twonk_path(@twonk)
        end 
     end 
          
     def check_for_vote
-      if @twonk.voters.include?(current_user)
+      if @twonk.voters.include?(ip)
         flash[:notice] = "You have already voted for #{@twonk.name}, you twonk!"
 	redirect_to twonk_path(@twonk)
       end
