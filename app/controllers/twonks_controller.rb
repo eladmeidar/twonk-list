@@ -13,11 +13,11 @@ class TwonksController < ApplicationController
   end
 
   def create
-    @twonk = current_user.nominations.new(params[:twonk])
+    @twonk = current_ip.nominations.new(params[:twonk])
     if @twonk.save
-      @vote = @twonk.votes.create(params[:vote].merge(:ip => current_user))
+      @twonk.votes.create(params[:vote].merge(:ip => current_user))
       flash[:success] = "Twonk has been nominated!"
-      redirect_to twonk_path(@twonk)
+      redirect_to twonks_path
     else
       flash[:failure] = "Twonk could not be nominated!"
       render :action => "new"
