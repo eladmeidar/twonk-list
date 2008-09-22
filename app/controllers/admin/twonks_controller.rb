@@ -15,4 +15,5 @@ class Admin::TwonksController < Admin::ApplicationController
     Twonk.find(params[:id]).destroy
     flash[:notice] = "Selected twonk has been deleted."
     redirect_to admin_twonks_path
+  end
 end
