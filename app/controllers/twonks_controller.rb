@@ -15,7 +15,7 @@ class TwonksController < ApplicationController
   def create
     @twonk = current_ip.nominations.new(params[:twonk])
     if @twonk.save
-      @twonk.votes.create(params[:vote].merge(:ip => current_user))
+      @twonk.votes.create(params[:vote].merge(:ip => current_ip))
       flash[:success] = "Twonk has been nominated!"
       redirect_to twonks_path
     else
