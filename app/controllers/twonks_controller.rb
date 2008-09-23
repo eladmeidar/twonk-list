@@ -1,5 +1,4 @@
 class TwonksController < ApplicationController
-  before_filter :login_required, :except => [:index, :show]
   before_filter :check_for_ownership, :only => [:edit, :update, :destroy]
   
   def index
