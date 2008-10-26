@@ -1,0 +1,2 @@
+class VampireController < ApplicationController
+end

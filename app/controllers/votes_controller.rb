@@ -1,5 +1,4 @@
 class VotesController < ApplicationController
-  before_filter :login_required
   before_filter :find_twonk
   before_filter :check_for_vote, :only => [:new, :create]
   def new
@@ -51,7 +50,7 @@ class VotesController < ApplicationController
     end 
          
     def check_for_vote
-      if @twonk.voters.include?(ip)
+      if @twonk.voters.include?(current_ip)
         flash[:notice] = "You have already voted for #{@twonk.name}, you twonk!"
 	redirect_to twonk_path(@twonk)
       end
