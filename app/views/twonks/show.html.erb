@@ -1,3 +1,4 @@
+<% @title = "Viewing #{@twonk.name}'s entry" %>
 <h1><%= h(@twonk.name) %> of <%= h(@twonk.location) %> is <%= "not" if @twonk.for_votes.size < @twonk.against_votes.size %> a twonk!</h1>
 <% if @twonk.nominated_by == current_ip %>
 <%= link_to "Edit", edit_twonk_path(@twonk) %> | <%= link_to "Destroy", twonk_path(@twonk), :method => "delete", :confirm => "Are you sure you want to delete this twonk?" %>
